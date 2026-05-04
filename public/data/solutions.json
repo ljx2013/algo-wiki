@@ -1,0 +1,32 @@
+{
+  "solutions": [
+    {
+      "id": "P1001-A+B-Problem",
+      "title": "P1001 A+B Problem",
+      "category": "入门题解",
+      "difficulty": "入门",
+      "tags": [
+        "基础",
+        "输入输出"
+      ],
+      "date": "2024-01-15T00:00:00.000Z",
+      "source": "洛谷",
+      "content": "<h2>题目描述</h2>\n<p>输入两个整数 a, b，输出它们的和。</p>\n<h2>解题思路</h2>\n<p>这是一道入门级别的题目，主要考察基本的输入输出和加法运算。</p>\n<h3>算法步骤</h3>\n<ol>\n<li>读取输入的两个整数 a 和 b</li>\n<li>计算 c = a + b</li>\n<li>输出 c</li>\n</ol>\n<h2>参考代码</h2>\n<pre><code class=\"language-cpp\">#include &lt;iostream&gt;\nusing namespace std;\n\nint main() {\n    long long a, b;\n    cin &gt;&gt; a &gt;&gt; b;\n    cout &lt;&lt; a + b &lt;&lt; endl;\n    return 0;\n}\n</code></pre>\n<pre><code class=\"language-python\">a = int(input())\nb = int(input())\nprint(a + b)\n</code></pre>\n<h2>复杂度分析</h2>\n<ul>\n<li><strong>时间复杂度</strong>: O(1)</li>\n<li><strong>空间复杂度</strong>: O(1)</li>\n</ul>\n<h2>注意事项</h2>\n<ul>\n<li>注意整数范围，建议使用 <code>long long</code> 类型</li>\n<li>Python 用户可以直接使用 <code>int()</code> 转换</li>\n</ul>\n",
+      "rawContent": "\n## 题目描述\n\n输入两个整数 a, b，输出它们的和。\n\n## 解题思路\n\n这是一道入门级别的题目，主要考察基本的输入输出和加法运算。\n\n### 算法步骤\n\n1. 读取输入的两个整数 a 和 b\n2. 计算 c = a + b\n3. 输出 c\n\n## 参考代码\n\n```cpp\n#include <iostream>\nusing namespace std;\n\nint main() {\n    "
+    },
+    {
+      "id": "P1047-校门外的树",
+      "title": "P1047 校门外的树",
+      "category": "基础算法",
+      "difficulty": "普及-",
+      "tags": [
+        "模拟",
+        "区间处理"
+      ],
+      "date": "2024-01-20T00:00:00.000Z",
+      "source": "洛谷",
+      "content": "<h2>题目描述</h2>\n<p>某校大门外长度为 L 的马路上有一排树，每两棵树的间隔为 1 米。我们可以把马路看成一个数轴，马路的一端在数轴 0 的位置，另一端在 L 的位置。马路上有一些区域要用来建地铁，这些区域用它们在数轴上的起始点和终止点表示。现在需要将树移走。请你计算移走后，马路上还有多少棵树。</p>\n<h2>解题思路</h2>\n<h3>方法一：模拟数组</h3>\n<p>最直观的方法是使用一个数组模拟每米的情况。</p>\n<pre><code class=\"language-cpp\">#include &lt;iostream&gt;\n#include &lt;vector&gt;\nusing namespace std;\n\nint main() {\n    int L, M;\n    cin &gt;&gt; L &gt;&gt; M;\n\n    vector&lt;int&gt; tree(L + 1, 1);\n\n    for (int i = 0; i &lt; M; i++) {\n        int start, end;\n        cin &gt;&gt; start &gt;&gt; end;\n        for (int j = start; j &lt;= end; j++) {\n            tree[j] = 0;\n        }\n    }\n\n    int count = 0;\n    for (int i = 0; i &lt;= L; i++) {\n        count += tree[i];\n    }\n\n    cout &lt;&lt; count &lt;&lt; endl;\n    return 0;\n}\n</code></pre>\n<h3>方法二：区间合并（更优）</h3>\n<p>使用差分数组优化，将区间操作优化到 O(1)。</p>\n<pre><code class=\"language-cpp\">#include &lt;iostream&gt;\n#include &lt;vector&gt;\nusing namespace std;\n\nint main() {\n    int L, M;\n    cin &gt;&gt; L &gt;&gt; M;\n\n    vector&lt;int&gt; diff(L + 2, 0);\n\n    for (int i = 0; i &lt; M; i++) {\n        int l, r;\n        cin &gt;&gt; l &gt;&gt; r;\n        diff[l]--;\n        diff[r + 1]++;\n    }\n\n    int count = 0, current = 0;\n    for (int i = 0; i &lt;= L; i++) {\n        current += diff[i];\n        if (current == 0) count++;\n    }\n\n    cout &lt;&lt; count &lt;&lt; endl;\n    return 0;\n}\n</code></pre>\n<h2>复杂度分析</h2>\n<table>\n<thead>\n<tr>\n<th>方法</th>\n<th>时间复杂度</th>\n<th>空间复杂度</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>方法一</td>\n<td>O(L × M)</td>\n<td>O(L)</td>\n</tr>\n<tr>\n<td>方法二</td>\n<td>O(L + M)</td>\n<td>O(L)</td>\n</tr>\n</tbody></table>\n<h2>关键点</h2>\n<ul>\n<li>理解区间覆盖的概念</li>\n<li>差分数组可以将区间修改优化到 O(1)</li>\n<li>注意边界条件的处理</li>\n</ul>\n",
+      "rawContent": "\n## 题目描述\n\n某校大门外长度为 L 的马路上有一排树，每两棵树的间隔为 1 米。我们可以把马路看成一个数轴，马路的一端在数轴 0 的位置，另一端在 L 的位置。马路上有一些区域要用来建地铁，这些区域用它们在数轴上的起始点和终止点表示。现在需要将树移走。请你计算移走后，马路上还有多少棵树。\n\n## 解题思路\n\n### 方法一：模拟数组\n\n最直观的方法是使用一个数组模拟每米的情况。\n\n```cp"
+    }
+  ]
+}
